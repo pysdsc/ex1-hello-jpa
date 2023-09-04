@@ -16,10 +16,10 @@ public class JpaMain {
         try {
 
             //영속
-            Member findMember1 = em.find(Member.class, 101l);
-            Member findMember2 = em.find(Member.class, 101l);
+            Member member = em.find(Member.class, 150L);
+            member.setName("zzz");
 
-            System.out.println("result = "+ (findMember1 == findMember2));
+            System.out.println("========================");
 
             tx.commit();
         } catch (Exception e) {
