@@ -12,32 +12,26 @@ import java.util.Date;
         initialValue = 1, allocationSize = 50)
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    private Integer age;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
+    public Team getTeam() {
+        return team;
+    }
 
-    private LocalDate testLocalDate;
-    private LocalDateTime testLocalDateTime;
-
-    @Lob
-    private String description;
-
-    @Transient
-    private int temp;
-
-    public Member() {
-
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Long getId() {
@@ -56,43 +50,4 @@ public class Member {
         this.username = username;
     }
 
-//    public Integer getAge() {
-//        return age;
-//    }
-//
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
-//
-//    public Date getCreatedDate() {
-//        return createdDate;
-//    }
-//
-//    public void setCreatedDate(Date createdDate) {
-//        this.createdDate = createdDate;
-//    }
-//
-//    public Date getLastModifiedDate() {
-//        return lastModifiedDate;
-//    }
-//
-//    public void setLastModifiedDate(Date lastModifiedDate) {
-//        this.lastModifiedDate = lastModifiedDate;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public int getTemp() {
-//        return temp;
-//    }
-//
-//    public void setTemp(int temp) {
-//        this.temp = temp;
-//    }
 }
